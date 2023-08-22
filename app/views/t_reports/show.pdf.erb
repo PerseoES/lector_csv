@@ -1,0 +1,384 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<%= wicked_pdf_stylesheet_link_tag 't_pdf' %>
+<h1>COMPETENCIAS TRANSVERSALES</h1>
+<br>
+<h2><%= @user.alumno %></h2>
+<h4>CI: <%= @user.documento %></h4>
+<br>
+<br>
+<h4>Grupo: <%= @user.grupo %></h4>
+<% autoevaluacion = Autoevaluacion.find_by(ci: @user.documento) %>
+<% cant = Cant.find_by(ci: @user.documento) %>
+<br><br><br>
+
+<% if @user.grupo == '1ro TIC' || @user.grupo == '1ro ADM' %>
+  <table class="t_t able">
+    <tr>
+      <td colspan = "3" class="comp"><%= @t_report.período %></td>
+      <td colspan = "2" class="titulo comp">EVALUACIÓN DOCENTE</td>
+      <td colspan = "2" class="titulo comp">AUTOEVALUACIÓN</td>
+    </tr>
+    <tr class="uno">
+      <td rowspan = "2" class="comp">Responsabilidad sobre las tareas</td>
+      <td class="num">C1E1</td>
+      <td><%= Indicator.find_by(nombre: 'C1E1').descripcion %></td>
+      <td><%= @t_report.C1E1 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C1E1).sub ",", ".").to_f * cant.C1E1) + (((@t_report.C1E2).sub ",", ".").to_f) * cant.C1E2) / (cant.C1E1 + cant.C1E2) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C1E1_primero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C1E1_primero).to_f + (autoevaluacion.C1E2_primero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="uno">
+      <td class="num">C1E2</td>
+      <td><%= Indicator.find_by(nombre: 'C1E2').descripcion %></td>
+      <td><%= @t_report.C1E2 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C1E2_primero %><% end %></td>
+    </tr>
+    <tr class="dos">
+      <td rowspan = "2" class="comp">Proactividad</td>
+      <td>C2E1</td>
+      <td><%= Indicator.find_by(nombre: 'C2E1').descripcion %></td>
+      <td><%= @t_report.C2E1 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C2E1).sub ",", ".").to_f * cant.C2E1) + (((@t_report.C2E2).sub ",", ".").to_f) * cant.C2E2) / (cant.C2E1 + cant.C2E2) ).round(2) %></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C2E1_primero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C2E1_primero).to_f + (autoevaluacion.C2E2_primero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="dos">
+      <td>C2E2</td>
+      <td><%= Indicator.find_by(nombre: 'C2E2').descripcion %></td>
+      <td><%= @t_report.C2E2 %></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C2E2_primero %><% end %></td>
+    </tr>
+    <tr class="tres">
+      <td rowspan = "2" class="comp">Comunicación</td>
+      <td>C3E1</td>
+      <td><%= Indicator.find_by(nombre: 'C3E1').descripcion %></td>
+      <td><%= @t_report.C3E1 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C3E1).sub ",", ".").to_f * cant.C3E1) + (((@t_report.C3E2).sub ",", ".").to_f) * cant.C3E2) / (cant.C3E1 + cant.C3E2) ).round(2) %></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C3E1_primero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C3E1_primero).to_f + (autoevaluacion.C3E2_primero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="tres">
+      <td>C3E2</td>
+      <td><%= Indicator.find_by(nombre: 'C3E2').descripcion %></td>
+      <td><%= @t_report.C3E2 %></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C3E2_primero %><% end %></td>
+    </tr>
+    <tr class="cuatro">
+      <td rowspan = "2" class="comp">Trabajo colaborativo</td>
+      <td>C4E1</td>
+      <td><%= Indicator.find_by(nombre: 'C4E1').descripcion %></td>
+      <td><%= @t_report.C4E1 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C4E1).sub ",", ".").to_f * cant.C4E1) + (((@t_report.C4E2).sub ",", ".").to_f) * cant.C4E2) / (cant.C4E1 + cant.C4E2) ).round(2) %></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C4E1_primero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C4E1_primero).to_f + (autoevaluacion.C4E2_primero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="cuatro">
+      <td>C4E2</td>
+      <td><%= Indicator.find_by(nombre: 'C4E2').descripcion %></td>
+      <td><%= @t_report.C4E2 %></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C4E2_primero %><% end %></td>
+    </tr>
+    <tr class="cinco">
+      <td rowspan = "2" class="comp">Apertura y pensamiento crítico</td>
+      <td>C5E1</td>
+      <td><%= Indicator.find_by(nombre: 'C5E1').descripcion %></td>
+      <td><%= @t_report.C5E1 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C5E1).sub ",", ".").to_f * cant.C5E1) + (((@t_report.C5E2).sub ",", ".").to_f) * cant.C5E2) / (cant.C5E1 + cant.C5E2) ).round(2) %></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C5E1_primero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C5E1_primero).to_f + (autoevaluacion.C5E2_primero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="cinco">
+      <td>C5E2</td>
+      <td><%= Indicator.find_by(nombre: 'C5E2').descripcion %></td>
+      <td><%= @t_report.C5E2 %></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C5E2_primero %><% end %></td>
+    </tr>
+    <tr class="seis">
+      <td rowspan = "2" class="comp">Desarrollo personal</td>
+      <td>C6E1</td>
+      <td><%= Indicator.find_by(nombre: 'C6E1').descripcion %></td>
+      <td><%= @t_report.C6E1 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C6E1).sub ",", ".").to_f * cant.C6E1) + (((@t_report.C6E2).sub ",", ".").to_f) * cant.C6E2) / (cant.C6E1 + cant.C6E2) ).round(2) %></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C6E1_primero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C6E1_primero).to_f + (autoevaluacion.C6E2_primero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="seis">
+      <td>C6E2</td>
+      <td><%= Indicator.find_by(nombre: 'C6E2').descripcion %></td>
+      <td><%= @t_report.C6E2 %></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C6E2_primero %><% end %></td>
+    </tr>
+    <tr class="siete">
+      <td rowspan = "2" class="comp">Alfabetización digital</td>
+      <td>C7E1</td>
+      <td><%= Indicator.find_by(nombre: 'C7E1').descripcion %></td>
+      <td><%= @t_report.C7E1 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C7E1).sub ",", ".").to_f * cant.C7E1) + (((@t_report.C7E2).sub ",", ".").to_f) * cant.C7E2) / (cant.C7E1 + cant.C7E2) ).round(2) %></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C7E1_primero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C7E1_primero).to_f + (autoevaluacion.C7E2_primero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="siete">
+      <td>C7E2</td>
+      <td><%= Indicator.find_by(nombre: 'C7E2').descripcion %></td>
+      <td><%= @t_report.C7E2 %></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C7E2_primero %><% end %></td>
+    </tr>
+    <tr>
+      <td class="sin_borde" colspan = "3"></td>
+      <td class="sin_borde"></td>
+      <!-- se tiene que revisar -->
+      <td><%= @t_report.promedio_evaluación %></td>
+      <td class="sin_borde"></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %>
+        <%= (((autoevaluacion.C1E1_primero).to_f + (autoevaluacion.C1E2_primero).to_f + (autoevaluacion.C2E1_primero).to_f + (autoevaluacion.C2E2_primero).to_f + (autoevaluacion.C3E1_primero).to_f + (autoevaluacion.C3E2_primero).to_f + (autoevaluacion.C4E1_primero).to_f + (autoevaluacion.C4E2_primero).to_f + (autoevaluacion.C5E1_primero).to_f + (autoevaluacion.C5E2_primero).to_f + (autoevaluacion.C6E1_primero).to_f + (autoevaluacion.C6E2_primero).to_f + (autoevaluacion.C7E1_primero).to_f + (autoevaluacion.C7E2_primero).to_f) / 14).round(2) %>
+      <% end %></td>
+    </tr>
+  </table>
+<% elsif @user.grupo == '2do TIC' || @user.grupo == '2do ADM'%>
+  <table class="t_table">
+    <tr>
+      <td colspan = "3" class="comp"><%= @t_report.período %></td>
+      <td colspan = "2" class="comp titulo">EVALUACIÓN DOCENTE</td>
+      <td colspan = "2" class="comp titulo">AUTOEVALUACIÓN</td>
+    </tr>
+    <tr class="uno">
+      <td class="comp" rowspan = "2">Responsabilidad sobre las tareas</td>
+      <td class="num">C1E1</td>
+      <td><%= Indicator.find_by(nombre: 'C1E1').descripcion %></td>
+      <td><%= @t_report.C1E1 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C1E1).sub ",", ".").to_f * cant.C1E1) + (((@t_report.C1E2).sub ",", ".").to_f) * cant.C1E2) / (cant.C1E1 + cant.C1E2) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C1E1_segundo %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C1E1_segundo).to_f + (autoevaluacion.C1E2_segundo).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="uno">
+      <td class="num">C1E2</td>
+      <td><%= Indicator.find_by(nombre: 'C1E2').descripcion %></td>
+      <td><%= @t_report.C1E2 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C1E2_segundo %><% end %></td>
+    </tr>
+    <tr class="dos">
+      <td class="comp" rowspan = "2">Proactividad</td>
+      <td class="num">C2E1</td>
+      <td><%= Indicator.find_by(nombre: 'C2E1').descripcion %></td>
+      <td><%= @t_report.C2E1 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C2E1).sub ",", ".").to_f * cant.C2E1) + (((@t_report.C2E2).sub ",", ".").to_f) * cant.C2E2) / (cant.C2E1 + cant.C2E2) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C2E1_segundo %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C2E1_segundo).to_f + (autoevaluacion.C2E2_segundo).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="dos">
+      <td class="num">C2E2</td>
+      <td><%= Indicator.find_by(nombre: 'C2E2').descripcion %></td>
+      <td><%= @t_report.C2E2 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C2E2_segundo %><% end %></td>
+    </tr>
+    <tr class="tres">
+      <td class="comp" rowspan = "2">Comunicación</td>
+      <td class="num">C3E1</td>
+      <td><%= Indicator.find_by(nombre: 'C3E1').descripcion %></td>
+      <td><%= @t_report.C3E1 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C3E1).sub ",", ".").to_f * cant.C3E1) + (((@t_report.C3E3).sub ",", ".").to_f) * cant.C3E3) / (cant.C3E1 + cant.C3E3) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C3E1_segundo %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C3E1_segundo).to_f + (autoevaluacion.C3E3_segundo).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="tres">
+      <td class="num">C3E3</td>
+      <td><%= Indicator.find_by(nombre: 'C3E3').descripcion %></td>
+      <td><%= @t_report.C3E3 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C3E3_segundo %><% end %></td>
+    </tr>
+    <tr class="cuatro">
+      <td class="comp" rowspan = "2">Trabajo colaborativo</td>
+      <td class="num">C4E1</td>
+      <td><%= Indicator.find_by(nombre: 'C4E1').descripcion %></td>
+      <td><%= @t_report.C4E1 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C4E1).sub ",", ".").to_f * cant.C4E1) + (((@t_report.C4E2).sub ",", ".").to_f) * cant.C4E2) / (cant.C4E1 + cant.C4E2) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C4E1_segundo %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C4E1_segundo).to_f + (autoevaluacion.C4E2_segundo).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="cuatro">
+      <td class="num">C4E2</td>
+      <td><%= Indicator.find_by(nombre: 'C4E2').descripcion %></td>
+      <td><%= @t_report.C4E2 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C4E2_segundo %><% end %></td>
+    </tr>
+    <tr class="cinco">
+      <td class="comp" rowspan = "2">Apertura y pensamiento crítico</td>
+      <td class="num">C5E3</td>
+      <td><%= Indicator.find_by(nombre: 'C5E3').descripcion %></td>
+      <td><%= @t_report.C5E3 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C5E3).sub ",", ".").to_f * cant.C5E3) + (((@t_report.C5E4).sub ",", ".").to_f) * cant.C5E4) / (cant.C5E3 + cant.C5E4) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C5E3_segundo %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C5E3_segundo).to_f + (autoevaluacion.C5E4_segundo).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="cinco">
+      <td class="num">C5E4</td>
+      <td><%= Indicator.find_by(nombre: 'C5E4').descripcion %></td>
+      <td><%= @t_report.C5E4 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C5E4_segundo %><% end %></td>
+    </tr>
+    <tr class="seis">
+      <td class="comp" rowspan = "2">Desarrollo personal</td>
+      <td class="num">C6E1</td>
+      <td><%= Indicator.find_by(nombre: 'C6E1').descripcion %></td>
+      <td><%= @t_report.C6E1 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C6E1).sub ",", ".").to_f * cant.C6E1) + (((@t_report.C6E2).sub ",", ".").to_f) * cant.C6E2) / (cant.C6E1 + cant.C6E2) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C6E1_segundo %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C6E1_segundo).to_f + (autoevaluacion.C6E2_segundo).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="seis">
+      <td class="num">C6E2</td>
+      <td><%= Indicator.find_by(nombre: 'C6E2').descripcion %></td>
+      <td><%= @t_report.C6E2 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C6E2_segundo %><% end %></td>
+    </tr>
+    <tr class="siete">
+      <td class="comp" rowspan = "2">Alfabetización digital</td>
+      <td class="num">C7E3</td>
+      <td><%= Indicator.find_by(nombre: 'C7E3').descripcion %></td>
+      <td><%= @t_report.C7E3 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C7E3).sub ",", ".").to_f * cant.C7E3) + (((@t_report.C7E4).sub ",", ".").to_f) * cant.C7E4) / (cant.C7E3 + cant.C7E4) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C7E3_segundo %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C7E3_segundo).to_f + (autoevaluacion.C7E4_segundo).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="siete">
+      <td class="num">C7E4</td>
+      <td><%= Indicator.find_by(nombre: 'C7E4').descripcion %></td>
+      <td><%= @t_report.C7E4 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C7E4_segundo %><% end %></td>
+    </tr>
+    <tr>
+      <td class="sin_borde" colspan = "3"></td>
+      <td class="sin_borde"></td>
+      <!-- se tiene que revisar -->
+      <td><%= @t_report.promedio_evaluación %></td>
+      <td class="sin_borde"></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %>
+        <%= (((autoevaluacion.C1E1_segundo).to_f + (autoevaluacion.C1E2_segundo).to_f + (autoevaluacion.C2E1_segundo).to_f + (autoevaluacion.C2E2_segundo).to_f + (autoevaluacion.C3E1_segundo).to_f + (autoevaluacion.C3E3_segundo).to_f + (autoevaluacion.C4E1_segundo).to_f + (autoevaluacion.C4E2_segundo).to_f + (autoevaluacion.C5E3_segundo).to_f + (autoevaluacion.C5E4_segundo).to_f + (autoevaluacion.C6E1_segundo).to_f + (autoevaluacion.C6E2_segundo).to_f + (autoevaluacion.C7E3_segundo).to_f + (autoevaluacion.C7E4_segundo).to_f) / 14).round(2) %>
+      <% end %></td>
+    </tr>
+  </table>
+<% elsif @user.grupo == '3ro TIC' || @user.grupo == '3ro ADM' %>
+  <table class="t_table">
+    <tr>
+      <td colspan = "3" class="comp"><%= @t_report.período %></td>
+      <td colspan = "2" class="comp titulo">EVALUACIÓN DOCENTE</td>
+      <td colspan = "2" class="comp titulo">AUTOEVALUACIÓN</td>
+    </tr>
+    <tr class="uno">
+      <td class="comp" rowspan = "2">Responsabilidad sobre las tareas</td>
+      <td class="num">C1E1</td>
+      <td><%= Indicator.find_by(nombre: 'C1E1').descripcion %></td>
+      <td><%= @t_report.C1E1 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C1E1).sub ",", ".").to_f * cant.C1E1) + (((@t_report.C1E3).sub ",", ".").to_f) * cant.C1E3) / (cant.C1E1 + cant.C1E3) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C1E1_tercero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C1E1_tercero).to_f + (autoevaluacion.C1E3_tercero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="uno">
+      <td class="num">C1E3</td>
+      <td><%= Indicator.find_by(nombre: 'C1E3').descripcion %></td>
+      <td><%= @t_report.C1E3 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C1E3_tercero %><% end %></td>
+    </tr>
+    <tr class="dos">
+      <td class="comp" rowspan = "2">Proactividad</td>
+      <td class="num">C2E2</td>
+      <td><%= Indicator.find_by(nombre: 'C2E2').descripcion %></td>
+      <td><%= @t_report.C2E2 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C2E2).sub ",", ".").to_f * cant.C2E2) + (((@t_report.C2E3).sub ",", ".").to_f) * cant.C2E3) / (cant.C2E2 + cant.C2E3) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C2E2_tercero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C2E2_tercero).to_f + (autoevaluacion.C2E3_tercero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="dos">
+      <td class="num">C2E3</td>
+      <td><%= Indicator.find_by(nombre: 'C2E3').descripcion %></td>
+      <td><%= @t_report.C2E3 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C2E3_tercero %><% end %></td>
+    </tr>
+    <tr class="tres">
+      <td class="comp" rowspan = "2">Comunicación</td>
+      <td class="num">C3E4</td>
+      <td><%= Indicator.find_by(nombre: 'C3E4').descripcion %></td>
+      <td><%= @t_report.C3E4 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C3E4).sub ",", ".").to_f * cant.C3E4) + (((@t_report.C3E5).sub ",", ".").to_f) * cant.C3E5) / (cant.C3E4 + cant.C3E5) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C3E4_tercero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C3E4_tercero).to_f + (autoevaluacion.C3E5_tercero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="tres">
+      <td class="num">C3E5</td>
+      <td><%= Indicator.find_by(nombre: 'C3E5').descripcion %></td>
+      <td><%= @t_report.C3E5 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C3E5_tercero %><% end %></td>
+    </tr>
+    <tr class="cuatro">
+      <td class="comp" rowspan = "2">Trabajo colaborativo</td>
+      <td class="num">C4E2</td>
+      <td><%= Indicator.find_by(nombre: 'C4E2').descripcion %></td>
+      <td><%= @t_report.C4E2 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C4E2).sub ",", ".").to_f * cant.C4E2) + (((@t_report.C4E3).sub ",", ".").to_f) * cant.C4E3) / (cant.C4E2 + cant.C4E3) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C4E2_tercero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C4E2_tercero).to_f + (autoevaluacion.C4E3_tercero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="cuatro">
+      <td class="num">C4E3</td>
+      <td><%= Indicator.find_by(nombre: 'C4E3').descripcion %></td>
+      <td><%= @t_report.C4E3 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C4E3_tercero %><% end %></td>
+    </tr>
+    <tr class="cinco">
+      <td class="comp" rowspan = "2">Apertura y pensamiento crítico</td>
+      <td class="num">C5E3</td>
+      <td><%= Indicator.find_by(nombre: 'C5E3').descripcion %></td>
+      <td><%= @t_report.C5E3 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C5E3).sub ",", ".").to_f * cant.C5E3) + (((@t_report.C5E4).sub ",", ".").to_f) * cant.C5E4) / (cant.C5E3 + cant.C5E4) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C5E3_tercero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C5E3_tercero).to_f + (autoevaluacion.C5E4_tercero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="cinco">
+      <td class="num">C5E4</td>
+      <td><%= Indicator.find_by(nombre: 'C5E4').descripcion %></td>
+      <td><%= @t_report.C5E4 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C5E4_tercero %><% end %></td>
+    </tr>
+    <tr class="seis">
+      <td class="comp" rowspan = "2">Desarrollo personal</td>
+      <td class="num">C6E2</td>
+      <td><%= Indicator.find_by(nombre: 'C6E2').descripcion %></td>
+      <td><%= @t_report.C6E2 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C6E2).sub ",", ".").to_f * cant.C6E2) + (((@t_report.C6E3).sub ",", ".").to_f) * cant.C6E3) / (cant.C6E2 + cant.C6E3) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C6E2_tercero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C6E2_tercero).to_f + (autoevaluacion.C6E3_tercero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="seis">
+      <td class="num">C6E3</td>
+      <td><%= Indicator.find_by(nombre: 'C6E3').descripcion %></td>
+      <td><%= @t_report.C6E3 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C6E3_tercero %><% end %></td>
+    </tr>
+    <tr class="siete">
+      <td class="comp" rowspan = "2">Alfabetización digital</td>
+      <td class="num">C7E4</td>
+      <td><%= Indicator.find_by(nombre: 'C7E4').descripcion %></td>
+      <td><%= @t_report.C7E4 %></td>
+      <td rowspan = "2"><%= (((((@t_report.C7E4).sub ",", ".").to_f * cant.C7E4) + (((@t_report.C7E5).sub ",", ".").to_f) * cant.C7E5) / (cant.C7E4 + cant.C7E5) ).round(2) %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C7E4_tercero %><% end %></td>
+      <td rowspan = "2"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= ((autoevaluacion.C7E4_tercero).to_f + (autoevaluacion.C7E5_tercero).to_f) / 2 %><% end %></td>
+    </tr>
+    <tr class="siete">
+      <td class="num">C7E5</td>
+      <td><%= Indicator.find_by(nombre: 'C7E5').descripcion %></td>
+      <td><%= @t_report.C7E5 %></td>
+      <td class="num"><% if Autoevaluacion.exists?(:ci => [@user.documento]) %><%= autoevaluacion.C7E5_tercero %><% end %></td>
+    </tr>
+    <tr>
+      <td class="sin_borde" colspan = "3"></td>
+      <td class="sin_borde"></td>
+      <!-- se tiene que revisar -->
+      <td><%= @t_report.promedio_evaluación %></td>
+      <td class="sin_borde"></td>
+      <td><% if Autoevaluacion.exists?(:ci => [@user.documento]) %>
+        <%= (((autoevaluacion.C1E1_tercero).to_f + (autoevaluacion.C1E3_tercero).to_f + (autoevaluacion.C2E2_tercero).to_f + (autoevaluacion.C2E3_tercero).to_f + (autoevaluacion.C3E4_tercero).to_f + (autoevaluacion.C3E5_tercero).to_f + (autoevaluacion.C4E2_tercero).to_f + (autoevaluacion.C4E3_tercero).to_f + (autoevaluacion.C5E3_tercero).to_f + (autoevaluacion.C5E4_tercero).to_f + (autoevaluacion.C6E2_tercero).to_f + (autoevaluacion.C6E3_tercero).to_f + (autoevaluacion.C7E4_tercero).to_f + (autoevaluacion.C7E5_tercero).to_f) / 14).round(2) %>
+      <% end %></td>
+    </tr>
+  </table>
+<% end %>

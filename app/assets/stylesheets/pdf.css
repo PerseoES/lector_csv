@@ -1,0 +1,59 @@
+h1 {
+  color: #3D7472;
+  text-align: center;
+  font-weight: bold;
+}
+
+h2 {
+  color: #3D7472;
+}
+
+tr {
+  border-bottom: solid;
+  border-width: 2px;
+  border-color: #55B7B3;
+}
+
+th {
+  background-color: #55B7B3;
+  color: white;
+  text-transform: uppercase;
+}
+
+h4 {
+  float: right;
+  color: #3D7472;
+}
+
+#materia {
+  width: 150px;
+  font-weight: bold;
+  color: #3D7472;
+}
+
+#período {
+  width: 150px;
+}
+
+#competencia {
+  width: 250px;
+  text-align: justify;
+}
+
+#descripción {
+  width: 250px;
+  text-align: justify;
+}
+
+#nivel {
+  width: 50px;
+  text-align: center;
+}
+
+table, tr, td, th, tbody, thead, tfoot {
+  page-break-inside: avoid !important;
+}
+
+.table {
+  color: #3D7472;
+}

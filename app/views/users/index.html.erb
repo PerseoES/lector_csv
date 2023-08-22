@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<h1>Estudiantes</h1>
+<h5>Estudiantes Totales: <%= User.count %></h5><br>
+<% users = @users.order(:grupo) %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Documento</th>
+      <th>Alumno</th>
+      <th>Grupo</th>
+      <th>Especificas</th>
+      <th>Transversales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% t_reports = TReport.all %>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.documento %></td>
+        <td><%= user.alumno %></td>
+        <td><%= user.grupo %></td>
+        <td><%= link_to 'Especificas', user_path(user, format: :pdf) %></td>
+        <% t_reports.each do |tr| %>
+        <% if tr.documento == user.documento %>
+        <td><%= link_to 'Transversales', t_report_path(tr.id, format: :pdf) %></td>
+        <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

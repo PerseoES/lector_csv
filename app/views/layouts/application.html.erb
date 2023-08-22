@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PruebaCsv</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <% if logged_in? %>
+      <div class="menu">
+        <div class="username">
+          <%= current_admin.username %>
+        </div>
+        <%= link_to 'Todos los Estudiantes', users_path %>
+        <%= link_to 'Todos los Grupos', groups_path %>
+        <div class="delete">
+          <%= link_to "Log out", '/loguot', method: "delete" %>
+        </div>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

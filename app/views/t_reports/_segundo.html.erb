@@ -1,0 +1,126 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<%= wicked_pdf_stylesheet_link_tag 't_pdf' %>
+<br><br><br>
+<h2><%= @user.alumno %></h2>
+<h4>CI: <%= @user.documento %></h4>
+<br>
+<br>
+<h4>Grupo: <%= @user.grupo %></h4>
+<% autoevaluacion = Autoevaluacion.find_by(ci: @user.documento) %>
+<br><br><br>
+
+<% elsif @user.grupo == '2do TIC' || @user.grupo == '2do ADM'%>
+  <table border = "1">
+    <tr>
+      <td colspan = "3" class="comp">SEGUNDO</td>
+      <td colspan = "2" class="comp titulo">EVALUACIÓN DOCENTE</td>
+      <td colspan = "2" class="comp titulo">AUTOEVALUACIÓN</td>
+    </tr>
+    <tr class="uno">
+      <td class="comp" rowspan = "2">Responsabilidad sobre las tareas</td>
+      <td class="num">C1E1</td>
+      <td><%= Indicator.find_by(nombre: 'C1E1').descripcion %></td>
+      <td><%= @t_report.C1E1 %></td>
+      <td rowspan = "2"><%= ((@t_report.C1E1).to_f + (@t_report.C1E2).to_f) %></td>
+      <td class="num"><%= autoevaluacion.C1E1_segundo %></td>
+      <td rowspan = "2"></td>
+    </tr>
+    <tr class="uno">
+      <td class="num">C1E2</td>
+      <td><%= Indicator.find_by(nombre: 'C1E2').descripcion %></td>
+      <td><%= @t_report.C1E2 %></td>
+      <td class="num"><%= autoevaluacion.C1E2_segundo %></td>
+    </tr>
+    <tr class="dos">
+      <td class="comp" rowspan = "2">Proactividad</td>
+      <td class="num">C2E1</td>
+      <td><%= Indicator.find_by(nombre: 'C2E1').descripcion %></td>
+      <td><%= @t_report.C2E1 %></td>
+      <td rowspan = "2"></td>
+      <td class="num"><%= autoevaluacion.C2E1_segundo %></td>
+      <td rowspan = "2"></td>
+    </tr>
+    <tr class="dos">
+      <td class="num">C2E2</td>
+      <td><%= Indicator.find_by(nombre: 'C2E2').descripcion %></td>
+      <td><%= @t_report.C2E2 %></td>
+      <td class="num"><%= autoevaluacion.C2E2_segundo %></td>
+    </tr>
+    <tr class="tres">
+      <td class="comp" rowspan = "2">Comunicación</td>
+      <td class="num">C3E1</td>
+      <td><%= Indicator.find_by(nombre: 'C3E1').descripcion %></td>
+      <td><%= @t_report.C3E1 %></td>
+      <td rowspan = "2"></td>
+      <td class="num"><%= autoevaluacion.C3E1_segundo %></td>
+      <td rowspan = "2"></td>
+    </tr>
+    <tr class="tres">
+      <td class="num">C3E3</td>
+      <td><%= Indicator.find_by(nombre: 'C3E3').descripcion %></td>
+      <td><%= @t_report.C3E3 %></td>
+      <td class="num"><%= autoevaluacion.C3E3_segundo %></td>
+    </tr>
+    <tr class="cuatro">
+      <td class="comp" rowspan = "2">Trabajo colaborativo</td>
+      <td class="num">C4E1</td>
+      <td><%= Indicator.find_by(nombre: 'C4E1').descripcion %></td>
+      <td><%= @t_report.C4E1 %></td>
+      <td rowspan = "2"></td>
+      <td class="num"><%= autoevaluacion.C4E1_segundo %></td>
+      <td rowspan = "2"></td>
+    </tr>
+    <tr class="cuatro">
+      <td class="num">C4E2</td>
+      <td><%= Indicator.find_by(nombre: 'C4E2').descripcion %></td>
+      <td><%= @t_report.C4E2 %></td>
+      <td class="num"><%= autoevaluacion.C4E2_segundo %></td>
+    </tr>
+    <tr class="cinco">
+      <td class="comp" rowspan = "2">Apertura y pensamiento crítico</td>
+      <td class="num">C5E3</td>
+      <td><%= Indicator.find_by(nombre: 'C5E3').descripcion %></td>
+      <td><%= @t_report.C5E3 %></td>
+      <td rowspan = "2"></td>
+      <td class="num"><%= autoevaluacion.C5E3_segundo %></td>
+      <td rowspan = "2"></td>
+    </tr>
+    <tr class="cinco">
+      <td class="num">C5E4</td>
+      <td><%= Indicator.find_by(nombre: 'C5E4').descripcion %></td>
+      <td><%= @t_report.C5E4 %></td>
+      <td class="num"><%= autoevaluacion.C5E4_segundo %></td>
+    </tr>
+    <tr class="seis">
+      <td class="comp" rowspan = "2">Desarrollo personal</td>
+      <td class="num">C6E1</td>
+      <td><%= Indicator.find_by(nombre: 'C6E1').descripcion %></td>
+      <td><%= @t_report.C6E1 %></td>
+      <td rowspan = "2"></td>
+      <td class="num"><%= autoevaluacion.C6E1_segundo %></td>
+      <td rowspan = "2"></td>
+    </tr>
+    <tr class="seis">
+      <td class="num">C6E2</td>
+      <td><%= Indicator.find_by(nombre: 'C6E2').descripcion %></td>
+      <td><%= @t_report.C6E2 %></td>
+      <td class="num"><%= autoevaluacion.C6E2_segundo %></td>
+    </tr>
+    <tr class="siete">
+      <td class="comp" rowspan = "2">Alfabetización digital</td>
+      <td class="num">C7E3</td>
+      <td><%= Indicator.find_by(nombre: 'C7E3').descripcion %></td>
+      <td><%= @t_report.C7E3 %></td>
+      <td rowspan = "2"></td>
+      <td class="num"><%= autoevaluacion.C7E3_segundo %></td>
+      <td rowspan = "2"></td>
+    </tr>
+    <tr class="siete">
+      <td class="num">C7E4</td>
+      <td><%= Indicator.find_by(nombre: 'C7E4').descripcion %></td>
+      <td><%= @t_report.C7E4 %></td>
+      <td class="num"><%= autoevaluacion.C7E4_segundo %></td>
+    </tr>
+  </table>
+<% end %>

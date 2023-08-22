@@ -1,0 +1,40 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+<h1>COMPETENCIAS ESPECIFICAS</h1>
+<br>
+<h2><%= @user.alumno %></h2>
+<h4>CI: <%= @user.documento %></h4>
+<br>
+<br>
+<h4>Grupo: <%= @user.grupo %></h4>
+<br><br><br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>materia</th>
+      <th>período</th>
+      <th>competencia</th>
+      <th>descripción</th>
+      <th>nivel</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Report.all.each do |r| %>
+      <% if r.documento == @user.documento %>
+        <tr>
+          <td id="materia"><%= r.materia %></td>
+          <td id="período"><%= r.período %></td>
+          <td id="competencia"><%= r.competencia %></td>
+          <td id="descripción"><%= r.descripción %></td>
+          <% if r.nivel == nil %>
+            <td>SIN CALIFICAR</td>
+          <% else %>
+            <td id="nivel"><%= r.nivel %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

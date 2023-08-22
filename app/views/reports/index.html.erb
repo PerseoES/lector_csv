@@ -1,0 +1,5 @@
+<h1>all reports</h1>
+<%= Report.count %><br><br><br>
+<% @reports.each do |report| %>
+  <%= report.id %> - <%= report.documento %> - <%= report.alumno %> <br><br>
+<% end %>

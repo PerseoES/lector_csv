@@ -1,0 +1,6 @@
+<% @t_reports.each do |tr| %>
+  <%= tr.id %><br>
+  <%= tr.documento %><br>
+  <%= tr.alumno %><br>
+  <%= button_to 'Ver', t_report_path(tr.id, format: :pdf), method: :get %>
+<% end %>

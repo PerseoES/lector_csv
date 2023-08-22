@@ -1,0 +1,2 @@
+class Cant < ApplicationRecord
+end

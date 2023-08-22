@@ -1,0 +1,2 @@
+class Autoevaluacion < ApplicationRecord
+end

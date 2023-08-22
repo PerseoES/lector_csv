@@ -1,0 +1,69 @@
+h1 {
+  color: #3D7472;
+  text-align: center;
+  font-weight: bold;
+}
+
+h4 {
+  float: right;
+  color: #3D7472;
+}
+
+h2 {
+  color: #3D7472;
+}
+
+td {
+  border: solid;
+  border-width: 2px;
+  border-color: #55B7B3;
+}
+
+.sin_borde {
+  border: none;
+}
+
+.comp {
+  font-weight: bold;
+}
+
+td {
+  height: 65px;
+  text-align: center;
+}
+
+.num {
+  width: 70px;
+}
+
+.titulo {
+  width: 400px;
+}
+
+.uno {
+  background-color: #c5daf8;
+}
+
+.dos {
+ background-color: #cce0e3;
+}
+
+.tres {
+  background-color: #d5ead3;
+}
+
+.cuatro {
+  background-color: #fff2cb;
+}
+
+.cinco {
+  background-color: #ffe4cc;
+}
+
+.seis {
+  background-color: #fccbcc;
+}
+
+.siete {
+  background-color: #efb6af;
+}

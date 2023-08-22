@@ -1,0 +1,5 @@
+<h1>all groups</h1>
+<%= Group.count %><br><br><br>
+<% @groups.each do |g| %>
+  <%= g.name %><br><br>
+<% end %>
